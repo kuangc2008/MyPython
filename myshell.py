@@ -6,5 +6,13 @@ command += command1;
 print command
 
 
+command="     				        "
+command += "adb shell monkey -p com.qihoo.contents -v 20000"
+print command
+
+
+
+
+
 
 
