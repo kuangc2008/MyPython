@@ -3,11 +3,36 @@
 
 # export ppp=/home/kc/Desktop/w/code/my/MyPython/myshell.py   shell中
 
+import sys
+import os
+
+if  'gradle'==sys.argv[1]:
+	print '1  gradle :launcher:installDebug'
+	print '2  gradle :browser:installDebug'
+	name = raw_input('请选择')
+	if '1'==name : 
+		print os.system("gradle :launcher:installDebug")
+	elif '2'==name:
+		print os.system("gradle :browser:installDebug")
+	exit();
+		
+	
+#else : 
+#	name = raw_input('请选择');
+
+
+
+
+
+
+
+
 
 command1="adb shell \"dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'\""
 command=""
 command += command1;
 print command
+
 
 
 command=""
@@ -30,9 +55,9 @@ print command
 
 command=""
 command += "       find . | xargs grep 'crash' -in\n"
-command += "       1 查看底下有About message，网上搜索\n"
-command += "       2  signal \n"
-command += "       3 FATAL:memory\n"
+command += "       find . | xargs grep 'About message' -in\n"
+command += "       find . | xargs grep ' signal ' -in\n"
+command += "       find . | xargs grep 'FATAL:memory' -in\n"
 print command
 
 
@@ -48,6 +73,7 @@ print command
 command="ANR: \n"
 command += "       find . | xargs grep 'Cmd line: com.qihoo.browser' -in\n"
 command += "       find . | xargs grep 'ANR in com.qihoo.browser' -in\n"
+command += "       find . | xargs grep 'WaitingPerformingGc' -in\n"
 print command
 
 command="other:"
