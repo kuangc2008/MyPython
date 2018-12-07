@@ -6,7 +6,7 @@
 import sys
 import os
 
-if  'gradle'==sys.argv[1]:
+if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 	print '1  gradle :launcher:installDebug'
 	print '2  gradle :browser:installDebug'
 	name = raw_input('请选择')
