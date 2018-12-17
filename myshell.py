@@ -7,14 +7,21 @@ import sys
 import os
 
 if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
-	print '1  gradle :launcher:installDebug'
-	print '2  gradle :browser:installDebug'
-	name = raw_input('请选择')
-	if '1'==name : 
-		print os.system("gradle :launcher:installDebug")
-	elif '2'==name:
-		print os.system("gradle :browser:installDebug")
-	exit();
+	if  len(sys.argv) > 2 :
+		if '1'==sys.argv[2]: 
+			print os.system("gradle :launcher:installDebug")
+		elif '2'==sys.argv[2]: 
+			print os.system("gradle :browser:installDebug")
+		exit();
+	else:
+		print '1  gradle :launcher:installDebug'
+		print '2  gradle :browser:installDebug'
+		name = raw_input('请选择')
+		if '1'==name : 
+			print os.system("gradle :launcher:installDebug")
+		elif '2'==name:
+			print os.system("gradle :browser:installDebug")
+		exit();
 		
 	
 #else : 
