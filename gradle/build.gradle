@@ -1,3 +1,5 @@
+
+
 task hello {
 	doLast {
 		println 'hello World'
@@ -79,6 +81,93 @@ task helloJavaBean << {
 class Persion {
 	private String name
 }
+
+
+// 闭包
+task helloClosure << {
+	customEach {
+		println it
+	}
+
+	eachMap { k,v ->
+		println "${k} is ${v}"
+	}
+}
+
+def customEach(closure) {
+	for (int i in 1..10) {
+		closure(i)
+	}
+}
+
+// 闭包2 多参数
+def eachMap(closure) {
+	def map1 = ['width' : 1024, 'height':768]
+	map1.each {
+		closure(it.key, it.value)
+	}
+}
+
+// 闭包的委托:  thisObject > owner > delegate
+task helloDelegate << {
+	new Delegate().test {
+		println "this Object : ${thisObject.getClass()}"  //root
+		println "owner : ${owner.getClass()}"
+		println "delegate: ${delegate.getClass()}"
+
+		method1();   // 使用的是root
+		it.method1();  // 使用的是delegate内部的
+	}
+}
+
+def method1() {
+	println "Delegate this:${this.getClass()} in root"
+	println "method1 in root"
+}
+
+class Delegate {
+	def method1() {
+		println "Delegate this:${this.getClass()} in Deleaate"
+		println "method1 in Delegate"
+	}
+
+	def test(Closure<Delegate> closure) {
+		closure(this)
+	}
+}
+
+
+
+
+task configClosure << {
+	psrson {
+		personName = 'zhangsan'
+		personAge = 20
+		dumpPersion()
+	}
+}
+
+class Person {
+	String personName
+	int personAge
+
+	def dumpPersion() {
+		println "name is ${personName}, age is ${personAge}"
+	}
+
+}
+
+def psrson(Closure<Person> closure) {
+	Person p = new Person();
+	closure.delegate = p
+	//委托
+	closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+	closure(p)
+}
+
+
+
+
 
 
 
