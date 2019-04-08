@@ -26,8 +26,8 @@ if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 	else:
 		print '1  gradle :launcher:installDebug'
 		print '2  gradle :browser:installDebug'
-		print '3  gradle :b_p_browser:installDebug'
-		print '4  gradle :b_launcher:installApmDebug'
+		print '3  ./gradlew :b_p_browser:installDebug'
+		print '4  ./gradlew :b_launcher:installApmDebug'
 		name = raw_input('请选择')
 		if '1'==name : 
 			print os.system("gradle :launcher:installDebug")
@@ -35,11 +35,11 @@ if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 			print os.system("gradle :browser:installDebug")
 		elif '3'==name:
 		
-			print os.system("gradle :b_p_browser:installDebug")
+			print os.system("./gradlew :b_p_browser:installDebug")
 		elif '4'==name:
 			print '4444'
 		#	print os.system("gradle :b_p_browser:assembleDebug")
-			print os.system("gradle :b_launcher:installApmDebug")
+			print os.system("./gradlew :b_launcher:installApmDebug")
 		exit();
 		
 	
@@ -52,7 +52,7 @@ if  len(sys.argv) > 1 and 'log'==sys.argv[1]:
 	#result, output = subprocess.getoutput("adb shell ps | grep 'com.qihoo.browser.browser'")
 	#print(output)
 		
-	progress='com.qihoo.browser.browser'
+	progress='com.qihoo.browser'
 	ret, output = commands.getstatusoutput("adb shell ps | grep " + progress)
 	print output
 	print '111'
@@ -65,6 +65,18 @@ if  len(sys.argv) > 1 and 'log'==sys.argv[1]:
 			print (result[index] + "  " + key)
 			print os.system("adb logcat -v threadtime | grep " + key)
 
+	exit();
+
+
+
+
+if  len(sys.argv) > 1 and 'edit'==sys.argv[1]:
+	os.system("gedit /home/kc/Desktop/w/code/my/MyPython/myshell.py")
+	exit();
+
+if  len(sys.argv) > 1 and 'go'==sys.argv[1]:
+#	os.chdir(r'/home/kc/Desktop/w/code/my/MyPython/')
+	print('/home/kc/Desktop/w/code/my/MyPython/')
 	exit();
 
 
