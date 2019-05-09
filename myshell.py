@@ -39,7 +39,9 @@ if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 		elif '4'==name:
 			print '4444'
 		#	print os.system("gradle :b_p_browser:assembleDebug")
-			print os.system("./gradlew :b_launcher:installApmDebug")
+
+			print os.system("./gradlew :b_p_browser:assembleDebug")
+			print os.system("./gradlew :b_launcher:installDevDebug")
 		exit();
 		
 	
@@ -53,6 +55,10 @@ if  len(sys.argv) > 1 and 'log'==sys.argv[1]:
 	#print(output)
 		
 	progress='com.qihoo.browser'
+
+	if  len(sys.argv) > 2 :
+		progress = sys.argv[2]
+	print progress
 	ret, output = commands.getstatusoutput("adb shell ps | grep " + progress)
 	print output
 	print '111'
