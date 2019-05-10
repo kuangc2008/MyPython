@@ -54,10 +54,13 @@ if  len(sys.argv) > 1 and 'log'==sys.argv[1]:
 	#result, output = subprocess.getoutput("adb shell ps | grep 'com.qihoo.browser.browser'")
 	#print(output)
 		
-	progress='com.qihoo.browser'
+	progress='com.qihoo.browser.browser'
 
 	if  len(sys.argv) > 2 :
-		progress = sys.argv[2]
+		if '1'==sys.argv[2]:
+			progress='com.qihoo.browser'
+		elif '2'==sys.argv[2]:
+			progress='com.qihoo.browser.browser'
 	print progress
 	ret, output = commands.getstatusoutput("adb shell ps | grep " + progress)
 	print output
