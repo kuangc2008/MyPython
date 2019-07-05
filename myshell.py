@@ -30,9 +30,11 @@ if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 		print '4  ./gradlew :b_launcher:installApmDebug'
 		name = raw_input('请选择')
 		if '1'==name : 
-			print os.system("gradle :launcher:installDebug")
+		#	print os.system("gradle :launcher:installDebug")
+			print os.system("'/home/kc/workspace/develop_tools/android-studio/gradle/gradle-2.14.1/bin/gradle' :launcher:installDebug")
 		elif '2'==name:
-			print os.system("gradle :browser:installDebug")
+		#	print os.system("gradle :browser:installDebug")
+			print os.system("'/home/kc/workspace/develop_tools/android-studio/gradle/gradle-2.14.1/bin/gradle' :browser:installDebug")
 		elif '3'==name:
 		
 			print os.system("./gradlew :b_p_browser:installDebug")
@@ -41,6 +43,7 @@ if  len(sys.argv) > 1 and 'gradle'==sys.argv[1]:
 		#	print os.system("gradle :b_p_browser:assembleDebug")
 
 			print os.system("./gradlew :b_p_browser:assembleDebug")
+		#	print os.system("./gradlew :b_launcher:assembleDevRelease")
 			print os.system("./gradlew :b_launcher:installDevDebug")
 		exit();
 		
@@ -54,13 +57,15 @@ if  len(sys.argv) > 1 and 'log'==sys.argv[1]:
 	#result, output = subprocess.getoutput("adb shell ps | grep 'com.qihoo.browser.browser'")
 	#print(output)
 		
-	progress='com.qihoo.browser.browser'
+	progress='com.qihoo.browser'
 
 	if  len(sys.argv) > 2 :
 		if '1'==sys.argv[2]:
 			progress='com.qihoo.browser'
 		elif '2'==sys.argv[2]:
 			progress='com.qihoo.browser.browser'
+		else:
+			progress=sys.argv[2]
 	print progress
 	ret, output = commands.getstatusoutput("adb shell ps | grep " + progress)
 	print output
